@@ -1,0 +1,10 @@
+cmd: python code/eval.py
+deps:
+- path: code/eval.py
+- path: data/mnist_test.csv
+- path: models
+outs:
+- path: metrics/eval.json
+  cache: false
+  metric: true
+  persist: false
