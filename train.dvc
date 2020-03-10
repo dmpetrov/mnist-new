@@ -1,4 +1,4 @@
-cmd: python code/train.py
+cmd: python code/train.py 
 deps:
 - path: code/train.py
 - path: data/mnist_train.csv
