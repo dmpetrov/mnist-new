@@ -5,11 +5,11 @@ from tensorflow.python.util import deprecation
 deprecation._PRINT_DEPRECATION_WARNINGS = False
 tf.disable_v2_behavior()
 
-import Mnist
+import mnist
 
 dirname = os.path.dirname(__file__)
 
-LABELS, IMAGES = Mnist.read_csv(os.path.join(dirname, '../data/mnist_test.csv'))
+LABELS, IMAGES = mnist.read_csv(os.path.join(dirname, '../data/mnist_test.csv'))
 
 META = os.path.join(dirname, '../models/mnist.meta')
 MODELS = os.path.join(dirname, '../models/')
