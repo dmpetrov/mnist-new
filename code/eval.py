@@ -5,7 +5,7 @@ from tensorflow.python.util import deprecation
 deprecation._PRINT_DEPRECATION_WARNINGS = False
 tf.disable_v2_behavior()
 
-import Mnist
+import mnist
 
 dirname = os.path.dirname(__file__)
 
