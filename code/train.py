@@ -51,15 +51,15 @@ with tf.Session() as session:
     for step in range(num_steps):
         batch_data, batch_labels = DATASET.next_batch(batch_size)
         feed_dict = {x: batch_data, y_: batch_labels}
-        
-        loss_out, ts_out, acc_out = session.run([loss, train_step, accuracy], feed_dict=feed_dict)  
+
+        loss_out, ts_out, acc_out = session.run([loss, train_step, accuracy], feed_dict=feed_dict)
 
     save_path = saver.save(session, OUT)
 
     with open(os.path.join(dirname, '../metrics/train.json'), 'w') as outfile:
-        json.dump({ 
-            "batch_size": batch_size, 
-            "num_steps": num_steps, 
-            "learning_rate": learning_rate,  
+        json.dump({
+            "batch_size": batch_size,
+            "num_steps": num_steps,
+            "learning_rate": learning_rate,
             "took" : (time.time() - start) / 1000 }, outfile)
 
