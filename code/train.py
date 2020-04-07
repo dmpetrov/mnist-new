@@ -9,12 +9,10 @@ from tensorflow.python.util import deprecation
 deprecation._PRINT_DEPRECATION_WARNINGS = False
 tf.disable_v2_behavior()
 
-
 dirname = os.path.dirname(__file__)
 
 train_labels, train_images = mnist.read_csv(
-    os.path.join(dirname, "../data/mnist_train.csv")
-)
+    os.path.join(dirname, "../data/mnist_train.csv"))
 DATASET = mnist.DataSet(train_images, train_labels)
 OUT = os.path.join(dirname, "../models/mnist")
 
@@ -36,16 +34,17 @@ y = tf.matmul(x, W) + b
 sm = tf.nn.softmax(y, name="softmax")
 
 # cross entropy (loss function)
-loss = tf.reduce_mean(
-    tf.nn.softmax_cross_entropy_with_logits(logits=y, labels=y_), name="loss"
-)
+loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=y,
+                                                              labels=y_),
+                      name="loss")
 
 # train step
 train_step = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss)
 
 # evaluating the model
 correct_prediction = tf.equal(tf.argmax(sm, 1), tf.argmax(y_, 1))
-accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32), name="accuracy")
+accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32),
+                          name="accuracy")
 
 saver = tf.train.Saver()
 init = tf.global_variables_initializer()
@@ -58,9 +57,8 @@ with tf.Session() as session:
         batch_data, batch_labels = DATASET.next_batch(batch_size)
         feed_dict = {x: batch_data, y_: batch_labels}
 
-        loss_out, ts_out, acc_out = session.run(
-            [loss, train_step, accuracy], feed_dict=feed_dict
-        )
+        loss_out, ts_out, acc_out = session.run([loss, train_step, accuracy],
+                                                feed_dict=feed_dict)
 
     save_path = saver.save(session, OUT)
 
