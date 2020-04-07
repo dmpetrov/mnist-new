@@ -1,7 +1,8 @@
-import mnist
-import os
 import json
+import os
 import time
+
+import mnist
 import tensorflow.compat.v1 as tf
 from tensorflow.python.util import deprecation
 
